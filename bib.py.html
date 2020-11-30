@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title></title>
+</head>
+<body>
+<div id="layout-content">
+<p>from pybtex.database import parse_file
+from heapq import heappush, heappop
+bib_data = parse_file('citations.bib&rsquo;)</p>
+<p>h = <a href=""></a></p>
+<p>for entry in bib_data.entries:
+heappush(h,(-1*int(bib_data.entries<a href="entry">entry</a>.fields<a href="'year'">'year'</a>), entry))</p>
+<p>while h:
+_ , entry = heappop(h)
+title = bib_data.entries<a href="entry">entry</a>.fields<a href="'title'">'title'</a></p>
+<p>if 'booktitle&rsquo; in bib_data.entries<a href="entry">entry</a>.fields:
+place = bib_data.entries<a href="entry">entry</a>.fields<a href="'booktitle'">'booktitle'</a> 
+if 'journal&rsquo; in bib_data.entries<a href="entry">entry</a>.fields:
+place = bib_data.entries<a href="entry">entry</a>.fields<a href="'journal'">'journal'</a>
+
+
+year = bib_data.entries<a href="entry">entry</a>.fields<a href="'year'">'year'</a></p>
+<p>authors = &ldquo;&rdquo;
+for x in bib_data.entries<a href="entry">entry</a>.persons<a href="'author'">'author'</a>:
+authors <tt>=&ldquo; &rdquo;.join(x.first_names</tt>x.last_names)+&ldquo;, &rdquo;
+authors = authors<a href=":-2">:-2</a></p>
+<p>string = &ldquo;- <b><span style=\"color: FireBrick \">(WCNC 2019)</span></b> &rdquo;<tt> authors </tt> &ldquo;
+  <i>&rdquo;<tt>title</tt>&ldquo; </i>, 
+ in <a href="https://wcnc2019.ieee-wcnc.org/">&rdquo;<tt>place </tt> &ldquo; &rdquo;<tt> year </tt>&ldquo;</a> 
+  <a href="https://ieeexplore.ieee.org"><img src=\"Documents/Images/ieee.png\"/ ALIGN=TOP> Paper</a> 
+&rdquo;</p>
+<p>print(string)
+print()</p>
+<div id="footer">
+<div id="footer-text">
+Copyright 2020-11-29 19:17:42 EST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+</div>
+</div>
+</div>
+</body>
+</html>
