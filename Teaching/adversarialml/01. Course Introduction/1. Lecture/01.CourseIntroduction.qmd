@@ -1,0 +1,222 @@
+---
+title: "AML-101: Adversarial Machine Learning"
+filters:
+  - include-code-files
+subtitle: "Module 01: Course Introduction"
+author: "Dr. Mahmoud Mahmoud"
+institute: "The University of Alabama"
+date: "today"
+format: 
+  revealjs:
+    css: styles.css
+    footer: "The University of Alabama"
+    toc: true
+    slide-number: true
+    toc-title: "Contents"
+    toc-depth: 1
+    logo: "Figures/ua-logo.png"
+---
+
+# Introduction
+
+## Outline
+
+::: {.incremental}
+- Derivatives and Finite Differences
+- Computing Jacobians
+- Interpretation and Visualization
+- Naming and Terminology
+:::
+
+# Derivatives and Finite Differences
+
+## Definition and Approximation
+
+The derivative of a function $f$ at a point $x$ is defined as:
+
+::: {.ua-block}
+$$\frac{df}{dx} = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$$
+:::
+
+
+In numerical methods, we approximate derivatives using finite differences:
+
+- **Forward difference**: $\frac{f(x+h) - f(x)}{h} \approx f'(x)$
+- **Backward difference**: $\frac{f(x) - f(x-h)}{h} \approx f'(x)$
+- **Central difference** (more accurate): $\frac{f(x+h) - f(x-h)}{2h} \approx f'(x)$
+
+## Key Considerations
+
+Key considerations:
+- Error is $O(h)$ for forward/backward and $O(h^2)$ for central difference
+- Smaller $h$ reduces discretization error but increases floating-point error
+- Used when analytical solutions are unavailable
+
+## Animated Sine Wave
+
+<div style="display: flex; justify-content: center;">
+  <iframe src="https://www.geogebra.org/material/iframe/id/actbqhcj/width/800/height/600" 
+        width="800" height="600" 
+        style="border:0;" allowfullscreen></iframe>
+</div>
+
+# Multivariable Calculus
+
+## Multivariable Derivatives
+
+For functions $f: \mathbb{R}^n \rightarrow \mathbb{R}^m$:
+
+- The derivative is the Jacobian matrix:
+  $$J_{ij} = \frac{\partial f_i}{\partial x_j}$$
+- Linearizes function near $x$:
+  $$f(x + dx) \approx f(x) + J(x) dx$$
+
+# Automatic Differentiation
+
+## Using PyTorch: Automatic Differentiation
+
+::: {.column width="50%"}
+* The vectors point "uphill" on the surface
+* They are perpendicular to level curves
+* In a future slide, we'll embed a full vector field visualization
+:::
+
+::: {.column width="50%"}
+* The vectors point "uphill" on the surface
+* They are perpendicular to level curves
+* In a future slide, we'll embed a full vector field visualization
+:::
+
+# Types of Derivatives
+
+## Two Types of Derivatives
+
+::: {.column width="50%"}
+### Partial Derivatives
+* Vary one variable, hold others constant
+* Denoted as $\frac{\partial f}{\partial x}$ or $f_x$
+* Measures rate of change in one direction
+* Example: $f(x,y) = x^2 + xy$
+  * $\frac{\partial f}{\partial x} = 2x + y$
+  * $\frac{\partial f}{\partial y} = x$
+:::
+
+::: {.column width="50%"}
+### Directional Derivatives
+* Rate of change in any direction
+* Denoted as $\nabla_{\mathbf{v}} f$
+* Computed as $\nabla f \cdot \mathbf{v}$
+* Gradient $\nabla f$ points in direction of steepest ascent
+* Useful for optimization problems
+:::
+
+# Code Examples
+
+## Visualization Examples
+
+::: {.panel-tabset .nav-pills}
+
+## Code
+
+```{python filename="matplotlib.py"}
+#| echo: true
+#| code-block-bg: true
+#| code-block-border-left: "#31BAE9"
+import matplotlib.pyplot as plt
+plt.plot([1,2,3,4])
+plt.show()
+```
+
+
+## Analysis
+
+For a demonstration of a line plot on a polar axis, see @fig-polar.
+
+```{python}
+#| label: fig-polar
+#| fig-cap: "A line plot on a polar axis"
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+r = np.arange(0, 2, 0.01)
+theta = 2 * np.pi * r
+fig, ax = plt.subplots(subplot_kw={'projection': 'polar'})
+ax.plot(theta, r)
+ax.set_rticks([0.5, 1, 1.5, 2])
+ax.grid(True)
+plt.show()
+```
+:::
+
+# Plotting
+
+
+## NumPy
+```{.python}
+import numpy as np
+a = np.arange(15).reshape(3, 5)
+a
+```
+
+---
+
+::: {.panel-tabset .nav-pills}
+
+## Matplotlib Code
+
+```{.python include="Code/example3.py"}
+```
+
+## Matplotlib Result
+```{python}
+#| fig-cap: "Matplotlib Plot"
+#| fig-align: center
+#| fig-width: 50%
+#| fig-height: 50%
+#| fig-pos: H
+#| fig-cap-location: top
+%run Code/example3.py
+```
+
+:::
+
+
+## Plotly
+
+```{python}
+import plotly.express as px
+import plotly.io as pio
+gapminder = px.data.gapminder()
+gapminder2007 = gapminder.query("year == 2007")
+fig = px.scatter(gapminder2007, 
+                 x="gdpPercap", y="lifeExp", color="continent", 
+                 size="pop", size_max=60,
+                 hover_name="country")
+fig.show()
+```
+
+## Want More?
+
+Scan this QR code or follow the link to explore this and more:
+
+[https://www.geogebra.org/m/w7n4cdxj](https://www.geogebra.org/m/w7n4cdxj)
+
+Thank you!
+
+
+---
+
+## Thank You!
+
+::: {.columns}
+::: {.column width="40%"}
+![](Figures/door.png){fig-align="center" width="25%"}
+:::
+
+::: {.column width="40%"}
+![](Figures/question.png){fig-align="center" width="25%"}
+:::
+:::
+
+![](Figures/thankyou.png){fig-align="center" width="35%"}
